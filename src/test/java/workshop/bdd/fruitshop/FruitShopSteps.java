@@ -1,25 +1,40 @@
 package workshop.bdd.fruitshop;
 
-import cucumber.api.PendingException;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class FruitShopSteps {
 
-	@Given("^contexte du premier scénario - en langage non ambigu précédé d'un mot clef - à remplacer$")
-	public void contexte_du_premier_scenario_en_langage_non_ambigu_precede_d_un_mot_clef_a_remplacer() {
-		throw new PendingException();
+	private int nb1;
+	private int nb2;
+	private int resultat;
+
+	@Given("^le premier nombre est (\\d+)$")
+	public void le_premier_nombre_est(int nb) {
+		this.nb1 = nb;
 	}
 
-	@When("^événement du premier scénario - en langage non ambigu précédé d'un mot clef - à remplacer$")
-	public void evenement_du_premier_scenario_en_langage_non_ambigu_precede_d_un_mot_clef_a_remplacer() {
-		throw new PendingException();
+	@Given("^le second nombre est (\\d+)$")
+	public void le_second_nombre_est(int nb) {
+		this.nb2 = nb;
 	}
 
-	@Then("^conséquence du premier scénario - en langage non ambigu précédé d'un mot clef - à remplacer$")
-	public void consequence_du_premier_scenario_en_langage_non_ambigu_precede_d_un_mot_clef_a_remplacer() {
-		throw new PendingException();
+	@When("^la somme est calculée$")
+	public void la_somme_est_calculee() {
+		this.resultat = calculerLaSomme(nb1, nb2);
+	}
+
+	@Then("^le résultat est (\\d+)$")
+	public void le_resultat_est(int sommeAttendue) {
+		assertThat(resultat).isEqualTo(sommeAttendue);
+	}
+
+	// Stub de code métier
+	private int calculerLaSomme(int nb1, int nb2) {
+		return nb1 + nb2;
 	}
 
 }
